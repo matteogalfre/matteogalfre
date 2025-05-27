@@ -12,7 +12,7 @@ class AIDeveloper:
     def __init__(self):
         self.name = "Mattéo"
         self.role = "AI Engineer & Python Dev"
-        self.tools = ["Python", "NLP", "CV", "LLMs"]
+        self.tools = ["Python", "NLP", "transformers", "LLMs"]
         self.hobbies = ["building stuff", "learning cool things", "automating life"]
 
     def say_hi(self):
