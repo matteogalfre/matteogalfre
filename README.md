@@ -22,11 +22,10 @@ me = AIDeveloper()
 me.say_hi()
 ```
 
-🚀 I like working with:
-🧠 Language Models & Computer Vision
+## 🧠 What I do
+I work on designing and implementing pipelines based on Large Language Models (LLMs) and Transformers, with a strong focus on document information extraction — making machines read like humans (but faster, and less coffee-dependent ☕️).
 
-📊 Automation and document intelligence
-
-🔍 Exploring the latest AI tech & open-source tools
-
-🧰 Favorite Tools & Tech
+## 📄 Featured Publication
+A Prompt-Driven Information Extraction Pipeline Using Large Language Models
+Presented at the International Conference on Enterprise Information Systems (ICEIS 2024)
+A deep dive into how LLMs can streamline invoice parsing and automate structured data extraction with remarkable accuracy.
