@@ -1,16 +1,32 @@
-## Hi there 👋
+# Hello there 👋
 
-<!--
-**matteogalfre/matteogalfre** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-Here are some ideas to get you started:
+Thanks for stopping by! I'm Mattéo — Python developer & AI tinkerer 🤖🐍
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```python
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+class AIDeveloper:
+    def __init__(self):
+        self.name = "Mattéo"
+        self.role = "AI Engineer & Python Dev"
+        self.tools = ["Python", "NLP", "CV", "LLMs"]
+        self.hobbies = ["building stuff", "learning cool things", "automating life"]
+
+    def say_hi(self):
+        print("Welcome to my GitHub — feel free to explore my projects!")
+
+me = AIDeveloper()
+me.say_hi()
+```
+
+🚀 I like working with:
+🧠 Language Models & Computer Vision
+
+📊 Automation and document intelligence
+
+🔍 Exploring the latest AI tech & open-source tools
+
+🧰 Favorite Tools & Tech
