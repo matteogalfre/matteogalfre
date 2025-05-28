@@ -24,14 +24,14 @@ me.say_hi()
 
 ## 🧠 What I do
 
-I’m a developer 💻 passionate about AI 🤖, always exploring new tech and building smart solutions. Coding is my playground and AI my obsession!
+I’m a developer 💻 passionate about AI 🤖, always exploring new tech and building smart solutions.
 
-💬 Let’s talk code, AI, or cool tech trends!
+💬 Let’s talk AI, or cool tech trends!
 
 📫 Reach me: matteogalfre22@gmail.com
 
 ## 📄 Featured Publication
-[**A Prompt-Driven Information Extraction Pipeline Using Large Language Models**](https://hal.science/hal-04772570/document)
+[**A Prompt-Driven Information Extraction Pipeline Using Large Language Models**](https://hal.science/hal-04772570/document)  
 Presented at the International Conference on Enterprise Information Systems (ICEIS 2024)
 A deep dive into how LLMs can streamline invoice parsing and automate structured data extraction with remarkable accuracy.
 
