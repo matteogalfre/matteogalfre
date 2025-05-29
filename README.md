@@ -26,7 +26,7 @@ me.say_hi()
 
 I’m a developer 💻 passionate about AI 🤖, always exploring new tech and building smart solutions.
 
-💬 Let’s talk AI, or cool tech trends!
+💬 Let’s talk projects or cool tech trends!
 
 📫 Reach me: matteogalfre22@gmail.com
 
@@ -88,7 +88,4 @@ A deep dive into how LLMs can streamline invoice parsing and automate structured
   </a>
 </p>
 
-
-
 </details>
-
