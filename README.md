@@ -24,7 +24,7 @@ me.say_hi()
 
 ## 🧠 What I do
 
-I’m a developer 💻 passionate about AI 🤖, always exploring new tech, building smart solutions and automating stuff.
+I’m a Python developer 💻 passionate about AI 🤖, always exploring new tech, building smart solutions and automating stuff.
 
 💬 Let’s talk projects or cool tech trends!
 
