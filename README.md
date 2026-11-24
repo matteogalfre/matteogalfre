@@ -1,13 +1,13 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img alt="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4, and Patrimo in progress." src="assets/banner-light.svg">
+  <img alt="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4 and Patrimo v1.0." src="assets/banner-light.svg">
 </picture>
 
 Software engineer. I spent a few years in AI, teaching LLMs and vision-language models to read documents. These days I mostly build apps, and most of them start as something I needed myself.
 
 - **[SpotWave](https://github.com/matteogalfre/SpotWave)** gives every surf spot near you a simple score, so you don't have to decode forecast tables.
 - **[PixelGuard](https://github.com/matteogalfre/PixelGuard)** copies all the photos and videos from your phone to your PC over USB, sorted by month. No cloud, no account.
-- **Patrimo** tracks your whole net worth, made for investors in France. Your bank data never leaves your phone. Open source, coming soon.
+- **[Patrimo](https://github.com/matteogalfre/Patrimo)** tracks your whole net worth, made for investors in France. Your bank data never leaves your phone.
 
 Everything here is open to contributions. Found a bug, have an idea, want to help? Open an issue or a pull request, I read them all.
 

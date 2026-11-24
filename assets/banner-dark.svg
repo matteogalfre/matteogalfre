@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" role="img" aria-label="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4, and Patrimo in progress.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" role="img" aria-label="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4 and Patrimo v1.0.">
 <style>
 .draw{stroke-dasharray:420;animation:draw .9s ease-out both}
 @keyframes draw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
@@ -24,11 +24,12 @@
 <circle class="pop" style="animation-delay:1.5s" cx="244" cy="96" r="5.5" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
 <circle class="pop" style="animation-delay:1.8s" cx="282" cy="160" r="6.5" fill="#0d1117" stroke="#58a6ff" stroke-width="3"/>
 <g class="pop" style="animation-delay:1.9500000000000002s"><rect x="262" y="176" width="40" height="20" rx="10" fill="#161b22" stroke="#30363d"/><text x="282" y="190" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#e6edf3">v1.4</text></g>
-<path class="draw" style="animation-delay:1.9s" d="M296 160 C314 160 308 96 326 96L396 96" fill="none" stroke="#bc8cff" stroke-width="3" stroke-linecap="round"/>
-<text class="pop" style="animation-delay:2.1999999999999997s" x="326" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#bc8cff">patrimo · wip</text>
+<path class="draw" style="animation-delay:1.9s" d="M296 160 C314 160 308 96 326 96L372 96 C390 96 384 160 402 160" fill="none" stroke="#bc8cff" stroke-width="3" stroke-linecap="round"/>
+<text class="pop" style="animation-delay:2.1999999999999997s" x="326" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#bc8cff">patrimo</text>
 <circle class="pop" style="animation-delay:2.15s" cx="332" cy="96" r="5.5" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
 <circle class="pop" style="animation-delay:2.3s" cx="364" cy="96" r="5.5" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
-<circle class="pop pulse" style="animation-delay:2.5s" cx="396" cy="96" r="6.5" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
+<circle class="pop" style="animation-delay:2.5999999999999996s" cx="402" cy="160" r="6.5" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
+<g class="pop" style="animation-delay:2.75s"><rect x="382" y="176" width="40" height="20" rx="10" fill="#161b22" stroke="#30363d"/><text x="402" y="190" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" fill="#e6edf3">v1.0</text></g>
 <text x="508" y="104" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#e6edf3">I build apps</text>
 <text x="508" y="140" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#e6edf3">and give them away.</text>
 <text x="510" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#9198a1">android · react native · python</text>
