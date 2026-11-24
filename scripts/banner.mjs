@@ -1,73 +1,82 @@
 // Generates the profile banner, in a light and a dark variant (assets/banner-*.svg).
-// A git graph of my side projects: each one branches off, gets a few commits and merges back
-// with a release tag. The last one is still being worked on: its head keeps blinking.
+// A git graph of my side projects, in the order they happened: PixelGuard first (2025), then
+// SpotWave and its releases, PixelGuard's redesign, and Patrimo, still in progress (its head blinks).
 // Run: node scripts/banner.mjs
 import { writeFileSync, mkdirSync } from 'node:fs';
 
 const THEMES = {
-  light: { ink: '#1f2328', muted: '#59636e', rail: '#8c959f', bg: '#ffffff', tag: '#f6f8fa', tagLine: '#d1d9e0', c: ['#0969da', '#1a7f37', '#8250df'] },
-  dark: { ink: '#e6edf3', muted: '#9198a1', rail: '#6e7681', bg: '#0d1117', tag: '#161b22', tagLine: '#30363d', c: ['#58a6ff', '#3fb950', '#bc8cff'] },
+  light: { ink: '#1f2328', muted: '#59636e', rail: '#8c959f', bg: '#ffffff', tag: '#f6f8fa', tagLine: '#d1d9e0', pg: '#1a7f37', sw: '#0969da', pa: '#8250df' },
+  dark: { ink: '#e6edf3', muted: '#9198a1', rail: '#6e7681', bg: '#0d1117', tag: '#161b22', tagLine: '#30363d', pg: '#3fb950', sw: '#58a6ff', pa: '#bc8cff' },
 };
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
 
-const MAIN_Y = 160;
-const UP_Y = 96;
-// from: where the branch leaves main, commits: along the branch, merge: back on main (null = still open).
-const BRANCHES = [
-  { name: 'spotwave', from: 56, commits: [92, 124], merge: 162, tag: 'v1.0', t: 0.3 },
-  { name: 'pixelguard', from: 176, commits: [212, 244], merge: 282, tag: 'v1.0', t: 1.1 },
-  { name: 'patrimo', from: 296, commits: [332, 364], head: 396, merge: null, t: 1.9 },
-];
+const MAIN = 150; // main branch
+const LOW = 104; // short-lived branches
+const HIGH = 60; // SpotWave, a long-running branch
 
-function branchPath(b) {
-  const end = b.merge ?? b.head;
-  const out = `M${b.from} ${MAIN_Y} C${b.from + 18} ${MAIN_Y} ${b.from + 12} ${UP_Y} ${b.from + 30} ${UP_Y}`;
-  const along = `L${(b.merge ? b.merge - 30 : end)} ${UP_Y}`;
-  const back = b.merge ? ` C${b.merge - 12} ${UP_Y} ${b.merge - 18} ${MAIN_Y} ${b.merge} ${MAIN_Y}` : '';
-  return out + along + back;
-}
+// Up from main to a lane, along it, and (optionally) back down to main.
+const up = (x, y) => `M${x} ${MAIN} C${x + 14} ${MAIN} ${x + 10} ${y} ${x + 24} ${y}`;
+const down = (x, y) => `C${x + 14} ${y} ${x + 10} ${MAIN} ${x + 24} ${MAIN}`;
+const branch = (from, y, to, merge) => `${up(from, y)} L${merge ? to - 24 : to} ${y}${merge ? ' ' + down(to - 24, y) : ''}`;
 
 function svg(t) {
-  const dot = (x, y, color, delay, r = 5.5, cls = 'pop') =>
-    `<circle class="${cls}" style="animation-delay:${delay}s" cx="${x}" cy="${y}" r="${r}" fill="${t.bg}" stroke="${color}" stroke-width="3"/>`;
-  const branches = BRANCHES.map((b, i) => {
-    const color = t.c[i];
-    const parts = [
-      `<path class="draw" style="animation-delay:${b.t}s" d="${branchPath(b)}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round"/>`,
-      `<text class="pop" style="animation-delay:${b.t + 0.3}s" x="${b.from + 30}" y="${UP_Y - 16}" font-family="${MONO}" font-size="12" fill="${color}">${b.name}${b.merge ? '' : ' · wip'}</text>`,
-      ...b.commits.map((x, k) => dot(x, UP_Y, color, b.t + 0.25 + k * 0.15)),
-    ];
-    if (b.merge) {
-      const w = 40;
-      parts.push(dot(b.merge, MAIN_Y, color, b.t + 0.7, 6.5));
-      parts.push(
-        `<g class="pop" style="animation-delay:${b.t + 0.85}s"><rect x="${b.merge - w / 2}" y="${MAIN_Y + 16}" width="${w}" height="20" rx="10" fill="${t.tag}" stroke="${t.tagLine}"/><text x="${b.merge}" y="${MAIN_Y + 30}" text-anchor="middle" font-family="${MONO}" font-size="11" fill="${t.ink}">${b.tag}</text></g>`
-      );
-    } else {
-      parts.push(dot(b.head, UP_Y, color, b.t + 0.6, 6.5, 'pop pulse'));
-    }
-    return parts.join('\n');
-  }).join('\n');
+  const anim = (cls, delay) => `class="${cls}" style="animation-delay:${delay}s"`;
+  const path = (d, color, delay) => `<path ${anim('draw', delay)} d="${d}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round"/>`;
+  const dot = (x, y, color, delay, r = 5.5, cls = 'pop') => `<circle ${anim(cls, delay)} cx="${x}" cy="${y}" r="${r}" fill="${t.bg}" stroke="${color}" stroke-width="3"/>`;
+  const label = (x, y, text, color, delay) => `<text ${anim('pop', delay)} x="${x}" y="${y}" font-family="${MONO}" font-size="12" fill="${color}">${text}</text>`;
+  const tag = (x, text, delay) =>
+    `<g ${anim('pop', delay)}><rect x="${x - 20}" y="${MAIN + 16}" width="40" height="20" rx="10" fill="${t.tag}" stroke="${t.tagLine}"/><text x="${x}" y="${MAIN + 30}" text-anchor="middle" font-family="${MONO}" font-size="11" fill="${t.ink}">${text}</text></g>`;
+  const merge = (x, color, text, delay) => dot(x, MAIN, color, delay, 6.5) + tag(x, text, delay + 0.15);
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" role="img" aria-label="A git graph of side projects: SpotWave and PixelGuard merged with a v1.0 tag, Patrimo still in progress.">
+  const parts = [
+    // main, then a dashed tail: the story goes on
+    path(`M24 ${MAIN} H418`, t.rail, 0),
+    `<path d="M428 ${MAIN} H500" fill="none" stroke="${t.rail}" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>`,
+    dot(24, MAIN, t.rail, 0),
+    label(24, MAIN + 64, '2025', t.muted, 0.2),
+    label(124, MAIN + 64, '2026', t.muted, 0.6),
+    // PixelGuard v1.0 (January 2025)
+    path(branch(34, LOW, 100, true), t.pg, 0.15),
+    label(58, LOW - 16, 'pixelguard', t.pg, 0.35),
+    dot(72, LOW, t.pg, 0.4),
+    merge(100, t.pg, 'v1.0', 0.6),
+    // SpotWave: a long-running branch, released on Google Play several times
+    path(branch(138, HIGH, 404, true), t.sw, 0.7),
+    label(162, HIGH - 16, 'spotwave', t.sw, 0.9),
+    dot(182, HIGH, t.sw, 0.9),
+    path(`M252 ${HIGH} ${down(252, HIGH)}`, t.sw, 1.2),
+    dot(236, HIGH, t.sw, 1.1),
+    merge(276, t.sw, 'v1.0', 1.4),
+    dot(310, HIGH, t.sw, 1.5),
+    path(`M326 ${HIGH} ${down(326, HIGH)}`, t.sw, 1.6),
+    merge(350, t.sw, 'v1.3', 1.8),
+    merge(404, t.sw, 'v1.4', 2.0),
+    // PixelGuard's redesign (May 2026)
+    path(branch(178, LOW, 226, true), t.pg, 1.0),
+    dot(204, LOW, t.pg, 1.2),
+    merge(226, t.pg, 'v2.0', 1.35),
+    // Patrimo, in progress
+    path(branch(418, LOW, 472, false), t.pa, 2.2),
+    label(442, LOW - 16, 'patrimo · wip', t.pa, 2.4),
+    dot(452, LOW, t.pa, 2.45),
+    dot(472, LOW, t.pa, 2.6, 6.5, 'pop pulse'),
+  ];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="900" height="240" role="img" aria-label="A git graph of side projects: PixelGuard v1.0 in 2025, SpotWave released several times in 2026, PixelGuard v2.0, and Patrimo in progress.">
 <style>
-.draw{stroke-dasharray:420;animation:draw .9s ease-out both}
-@keyframes draw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+.draw{stroke-dasharray:600;animation:draw 1s ease-out both}
+@keyframes draw{from{stroke-dashoffset:600}to{stroke-dashoffset:0}}
 .pop{animation:pop .35s ease-out both}
 @keyframes pop{from{opacity:0}to{opacity:1}}
-.pulse{transform-box:fill-box;transform-origin:center;animation:pop .35s ease-out both,pulse 1.4s ease-in-out 3s infinite}
+.pulse{animation:pop .35s ease-out both,pulse 1.4s ease-in-out 3.2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @media (prefers-reduced-motion: reduce){.draw,.pop,.pulse{animation:none}}
 </style>
-<path class="draw" style="animation-delay:0s" d="M28 ${MAIN_Y} H430" fill="none" stroke="${t.rail}" stroke-width="3" stroke-linecap="round"/>
-<path d="M440 ${MAIN_Y} H468" fill="none" stroke="${t.rail}" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 7"/>
-<text class="pop" style="animation-delay:.2s" x="28" y="${MAIN_Y + 30}" font-family="${MONO}" font-size="12" fill="${t.muted}">main</text>
-${dot(28, MAIN_Y, t.rail, 0)}
-${branches}
-<text x="508" y="104" font-family="${SANS}" font-size="30" font-weight="700" fill="${t.ink}">I build apps</text>
-<text x="508" y="140" font-family="${SANS}" font-size="30" font-weight="700" fill="${t.ink}">and give them away.</text>
-<text x="510" y="170" font-family="${MONO}" font-size="12" fill="${t.muted}">android · react native · python</text>
+${parts.join('\n')}
+<text x="566" y="106" font-family="${SANS}" font-size="30" font-weight="700" fill="${t.ink}">I build apps</text>
+<text x="566" y="142" font-family="${SANS}" font-size="30" font-weight="700" fill="${t.ink}">and give them away.</text>
+<text x="568" y="172" font-family="${MONO}" font-size="12" fill="${t.muted}">android · react native · python</text>
 </svg>
 `;
 }
