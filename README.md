@@ -5,7 +5,7 @@
 
 Software engineer. I spent a few years in AI, teaching LLMs and vision-language models to read documents. These days I mostly build apps, and most of them start as something I needed myself.
 
-- **SpotWave** gives every surf spot near you a simple score, so you don't have to decode forecast tables.
+- **[SpotWave](https://github.com/matteogalfre/SpotWave)** gives every surf spot near you a simple score, so you don't have to decode forecast tables.
 - **[PixelGuard](https://github.com/matteogalfre/PixelGuard)** copies all the photos and videos from your phone to your PC over USB, sorted by month. No cloud, no account.
 - **Patrimo** tracks your net worth without your bank data ever leaving your phone. Open source, coming soon.
 
