@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img alt="A git graph of side projects: PixelGuard v1.0 in 2025, SpotWave released several times in 2026, PixelGuard v2.0, and Patrimo in progress." src="assets/banner-light.svg">
+  <img alt="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4, and Patrimo in progress." src="assets/banner-light.svg">
 </picture>
 
 Software engineer. I spent a few years in AI, teaching LLMs and vision-language models to read documents. These days I mostly build apps, and most of them start as something I needed myself.
