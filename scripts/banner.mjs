@@ -15,7 +15,7 @@ const MAIN_Y = 160;
 const UP_Y = 96;
 // from: where the branch leaves main, commits: along the branch, merge: back on main (null = still open).
 const BRANCHES = [
-  { name: 'pixelguard', from: 56, commits: [92, 124], merge: 162, tag: 'v2.0', t: 0.3 },
+  { name: 'pixelguard', from: 56, commits: [92, 124], merge: 162, tag: 'v0.3', t: 0.3 },
   { name: 'spotwave', from: 176, commits: [212, 244], merge: 282, tag: 'v1.4', t: 1.1 },
   { name: 'patrimo', from: 296, commits: [332, 364], head: 396, merge: null, t: 1.9 },
 ];
@@ -49,7 +49,7 @@ function svg(t) {
     return parts.join('\n');
   }).join('\n');
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" role="img" aria-label="A git graph of side projects: PixelGuard v2.0, SpotWave v1.4, and Patrimo in progress.">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" width="880" height="240" role="img" aria-label="A git graph of side projects: PixelGuard v0.3, SpotWave v1.4, and Patrimo in progress.">
 <style>
 .draw{stroke-dasharray:420;animation:draw .9s ease-out both}
 @keyframes draw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
